@@ -1,21 +1,19 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./Listas";
-import { Outlet } from "react-router-dom";
+import Listas from "../privada/Listas";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 
 const drawerWidth = 240;
 
@@ -72,7 +70,16 @@ const theme = createTheme({
 });
 
 export default function Dashboard() {
+  const { user } = useUserContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user.estado) {
+      navigate("/", { replace: true });
+    }
+  }, []);
+
   const [open, setOpen] = React.useState(true);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -116,24 +123,7 @@ export default function Dashboard() {
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1]
-            }}
-          >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <List component="nav">
-            {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
-          </List>
+          <Listas toggleDrawer={toggleDrawer} />
         </Drawer>
         <Box
           component="main"

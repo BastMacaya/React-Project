@@ -29,6 +29,7 @@ const Header = () => {
     >
       <Button onClick={() => LoginClick()}>
         <Typography
+          component={"span"}
           fontFamily={"Montserrat Ligth"}
           fontStyle={{
             color: "#000"
@@ -39,6 +40,7 @@ const Header = () => {
       </Button>
       <Button onClick={() => NosotrosClick()}>
         <Typography
+          component={"span"}
           variant="p"
           fontFamily={"Montserrat Ligth"}
           fontStyle={{ color: "#fff" }}
@@ -48,6 +50,7 @@ const Header = () => {
       </Button>
       <Button onClick={() => TarifasClick()}>
         <Typography
+          component={"span"}
           variant="p"
           fontFamily={"Montserrat Ligth"}
           fontStyle={{ color: "#fff" }}
@@ -57,6 +60,7 @@ const Header = () => {
       </Button>
       <Button onClick={() => EspecialistasClick()}>
         <Typography
+          component={"span"}
           variant="p"
           fontFamily={"Montserrat Ligth"}
           fontStyle={{ color: "#fff" }}

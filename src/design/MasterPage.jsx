@@ -1,10 +1,17 @@
 import React from "react";
-import {RouterProvider} from 'react-router-dom'
-import {router} from "./rutas/router";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./rutas/router";
+import UserProvider from "./context/UserContext";
+
 
 const MasterPage = () => {
   return (
-    <RouterProvider router={router}/>
+    <>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
+    </>
+
   );
 };
 

@@ -7,6 +7,9 @@ import Nosotros from "../publica/inicio/Nosotros";
 import Inventario from "../privada/inventario/Inventario";
 import Agenda from "../privada/agenda/Agenda";
 import Usuario from "../privada/usuario/Usuario";
+import Producto from "../privada/producto/Producto";
+import Especialistas from "../publica/inicio/Especialistas";
+import Tarifas from "../publica/inicio/Tarifas";
 
 export const router = createBrowserRouter([
   {
@@ -23,11 +26,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/Tarifas",
-        element: <Principal />
+        element: <Tarifas />
       },
       {
         path: "/Especialistas",
-        element: <Principal />
+        element: <Especialistas />
       }
     ]
   },
@@ -41,15 +44,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/Dashboard",
+        element: <Agenda />
+      },
+      {
+        path: "/Dashboard/Agenda",
+        element: <Agenda />
+      },
+      {
+        path: "/Dashboard/Inventario",
         element: <Inventario />
       },
       {
-        path: "/Usuario",
-        element: <Usuario />
-      },
-      {
-        path: "/Agenda",
-        element: <Agenda />
+        path: "/Dashboard/Productos",
+        element: <Producto />
       }
     ]
   },

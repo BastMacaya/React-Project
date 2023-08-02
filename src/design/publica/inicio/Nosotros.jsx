@@ -18,11 +18,11 @@ const articulos = [
 
 const Nosotros = () => {
   return (
-    <Container container xs={12}>
-      <Grid container spacing={1} xs={12}>
+    <Container>
+      <Grid container spacing={1}>
         {articulos.map(articulo => {
           return (
-            <Grid item xs={12} sx={{ margin: 2 }}>
+            <Grid item xs={12} sx={{ margin: 2 }} key={articulo.id}>
               <Card>
                 <CardHeader
                   avatar={<Avatar aria-label="" />}
@@ -40,8 +40,8 @@ const Nosotros = () => {
           );
         })}
       </Grid>
-      <Grid container spacing={1} xs={12} sx={{ padding: 2, height: "450px" }}>
-        <Grid item xs={12}>
+      <Grid container spacing={1} sx={{ padding: 2, height: "450px" }}>
+        <Grid item>
           <Card>
             <ul>
               <li>

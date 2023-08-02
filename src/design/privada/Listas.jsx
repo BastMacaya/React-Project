@@ -5,47 +5,17 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { IconButton } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import Toolbar from "@mui/material/Toolbar";
+import { useNavigate } from "react-router-dom";
 
-export const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
-  </React.Fragment>
-);
 
-export const secondaryListItems = (
+
+const secondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       Saved reports
@@ -70,3 +40,66 @@ export const secondaryListItems = (
     </ListItemButton>
   </React.Fragment>
 );
+
+const MenuLateral = props => {
+  const navigate = useNavigate();
+
+  const mainListItems = (
+    <>
+      <ListItemButton
+        onClick={() => {
+          navigate("/Dashboard/Agenda",{replace:true})
+        }}
+      >
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Agenda" />
+      </ListItemButton>
+      <ListItemButton
+        onClick={() => {
+          navigate("/Dashboard/Inventario",{replace:true})
+        }}
+      >
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Inventario" />
+      </ListItemButton>
+      <ListItemButton
+        onClick={() => {
+          navigate("/Dashboard/Productos",{replace:true})
+        }}
+      >
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Productos" />
+      </ListItemButton>
+    </>
+  );
+  return (
+    <React.Fragment>
+      <Toolbar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          px: [1]
+        }}
+      >
+        <IconButton onClick={() => props.toggleDrawer()}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </Toolbar>
+      <Divider />
+      <List component="nav">
+        {mainListItems}
+        <Divider sx={{ my: 1 }} />
+        {secondaryListItems}
+      </List>
+    </React.Fragment>
+  );
+};
+
+export default MenuLateral;
