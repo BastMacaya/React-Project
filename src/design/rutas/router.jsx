@@ -6,7 +6,6 @@ import Principal from "../publica/inicio/Principal";
 import Nosotros from "../publica/inicio/Nosotros";
 import Inventario from "../privada/inventario/Inventario";
 import Agenda from "../privada/agenda/Agenda";
-import Usuario from "../privada/usuario/Usuario";
 import Producto from "../privada/producto/Producto";
 import Especialistas from "../publica/inicio/Especialistas";
 import Tarifas from "../publica/inicio/Tarifas";
