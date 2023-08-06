@@ -74,7 +74,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user.estado) {
       navigate("/", { replace: true });
     }
   }, []);

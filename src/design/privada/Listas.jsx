@@ -2,10 +2,8 @@ import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { IconButton } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -13,37 +11,14 @@ import List from "@mui/material/List";
 import Toolbar from "@mui/material/Toolbar";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import { useEffect } from "react";
 
-const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component='div' inset>
-      Saved reports
-    </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Current month' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Last quarter' />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Year-end sale' />
-    </ListItemButton>
-  </React.Fragment>
-);
-
-const MenuLateral = (props) => {
+const MenuLateral = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
-  const permisos = [];
+  const permisos = user.user.permisos || [];
+
+  //Modulos
 
   const Agenda = () => {
     return (
@@ -95,7 +70,7 @@ const MenuLateral = (props) => {
 
   const mainListItems = (
     <>
-      {permisos.map((permiso) => {
+      {permisos.sort().map((permiso) => {
         switch (permiso.modulo) {
           case "Agenda":
             return Agenda();
@@ -106,10 +81,17 @@ const MenuLateral = (props) => {
           case "Producto":
             return Producto();
             break;
+          default:
+            return "no hay permisos";
+            break;
         }
       })}
     </>
   );
+
+  //Botones de Acceso a Descargas
+
+  //Insertar los botones Mencionados XD
 
   return (
     <React.Fragment>
@@ -127,9 +109,8 @@ const MenuLateral = (props) => {
       </Toolbar>
       <Divider />
       <List component='nav'>
-        {mainListItems}
+        {user !== {} ? mainListItems : "no hay permisos"}
         <Divider sx={{ my: 1 }} />
-        {secondaryListItems}
       </List>
     </React.Fragment>
   );
